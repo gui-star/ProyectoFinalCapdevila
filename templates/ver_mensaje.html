@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Ver Mensaje</h1>
+
+  <div class="message-info">
+    <p>De: {{ message.sender }}</p>
+    <p>Asunto: {{ message.subject }}</p>
+    <p>Cuerpo: {{ message.body }}</p>
+    <p>Fecha: {{ message.timestamp }}</p>
+  </div>
+
+  {% if message.receiver == request.user %}
+    <form method="post" action="{% url 'mensajes:eliminar_mensaje' pk=message.pk %}" class="delete-form">
+      {% csrf_token %}
+      <button type="submit">Eliminar mensaje</button>
+    </form>
+  {% endif %}
+{% endblock %}

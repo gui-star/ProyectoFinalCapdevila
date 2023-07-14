@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="message-section">
+    <h1>Mensajes</h1>
+    <a href="{% url 'mensajes:enviar_mensaje' %}" class="btn btn-primary">Enviar Mensaje</a>
+    <hr>
+  
+    {% if messages %}
+      <ul class="message-list">
+        {% for message in messages %}
+          <li class="message-item">
+            <a href="{% url 'mensajes:ver_mensaje' message.pk %}" class="message-link">
+              <h3 class="message-subject">{{ message.subject }}</h3>
+              <p class="message-sender">De: {{ message.sender }}</p>
+              <p class="message-timestamp">Fecha: {{ message.timestamp }}</p>
+            </a>
+          </li>
+        {% empty %}
+          <li>No hay mensajes disponibles.</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay mensajes disponibles.</p>
+    {% endif %}
+  </div>
+{% endblock %}

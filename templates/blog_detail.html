@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="blog-detail">
+      {% if blog.image %}
+        <div class="image-wrapper">
+          <img src="{{ blog.image.url }}" alt="Imagen del blog" class="blog-image-detail">
+        </div>
+      {% else %}
+        <div class="image-not-found">
+          <p>Imagen no encontrada</p>
+        </div>
+      {% endif %}
+
+      <div class="blog-body">
+        <h2 class="blog-title">{{ blog.title }}</h2>
+        <p class="blog-meta">
+          <span class="blog-meta-item">Autor: {{ blog.author }}</span>
+          <span class="blog-meta-item">Fecha: {{ blog.date }}</span>
+          <span class="blog-meta-item">Rating: <span class="gold-star">&#9733;</span> {{ blog.rating }}</span>
+        </p>
+        <p>{{ blog.body }}</p>
+      </div>
+
+      <div class="content-section">
+        <div class="comment-section">
+          <h2>Comentarios</h2>
+          <ul class="comment-list">
+            {% for comment in comments %}
+              <li class="comment-item">
+                <p class="comment-content">
+                  <span class="comment-author">{{ comment.author }}</span>
+                  <span class="comment-text">{{ comment.text }}</span>
+                </p>
+                <p class="comment-date">{{ comment.created_at }}</p>
+              </li>
+              {% for reply in comment.replies.all %}
+                <ul class="reply-list">
+                  <li class="reply-item">
+                    <p class="reply-content">
+                      <span class="reply-author">{{ reply.author }}</span>
+                      <span class="reply-text">{{ reply.text }}</span>
+                    </p>
+                    <p class="reply-date">{{ reply.created_at }}</p>
+                  </li>
+                </ul>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+
+          <h2>Agregar Comentario</h2>
+          <form method="post" action="{% url 'blogs:blog_detail' pk=blog.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+          </form>
+        </div>
+
+        <div class="rating-section">
+          {% if has_rated_blog %}
+              <p>Ya has valorado este blog.</p>
+          {% else %}
+              <h2>Valorar</h2>
+              <form method="post" action="{% url 'blogs:rate_blog' pk=blog.pk %}">
+                  {% csrf_token %}
+                  <div class="rating-options">
+                      {{ rating_form.rating }}
+                  </div>
+                  <button type="submit" class="btn btn-primary">Valorar</button>
+              </form>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="action-section">
+        <a href="{% url 'blogs:blog_list' %}" class="return-link">Volver a la lista de blogs</a>
+
+        {% if blog.author == request.user %}
+          <form method="post" action="{% url 'blogs:delete_blog' pk=blog.pk %}" class="delete-form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar blog</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

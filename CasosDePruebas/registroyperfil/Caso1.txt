@@ -1,0 +1,8 @@
+Caso de registro y edicion de perfil.
+
+c1: Ingresamos a la pagina, nos lleva al home automaticamente.
+c2: Tocamos el boton de registrar, ingresamos los datos y clickeamos en registrarse.
+c3: Ya nos loguea automaticamente y nos manda a la pantalla de home, asi que clickeamos perfil.
+c4: Vemos el perfil por defecto, clickeamos editar perfil.
+c5: Subimos una imagen, rellenamos el resto de campos requeridos y clickeamos guardar.
+c6: Perfil creado completo :)

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Blogs</h1>
+
+    <a href="{% url 'blogs:create_blog' %}" class="btn btn-primary mb-3">Crear nuevo blog</a>
+
+    <form method="GET" action="{% url 'blogs:blog_search' %}" class="search-form">
+      <div class="input-group input-group-xs mb-3">
+        <input type="text" name="q" class="form-control" placeholder="Buscar blogs">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+      </div>
+    </form>
+
+    <ul class="blog-list">
+      {% for blog in page_obj %}
+        <li class="blog-item mb-4">
+          <a href="{% url 'blogs:blog_detail' blog.pk %}">
+            <div class="blog-thumbnail">
+              <h2 class="blog-title">{{ blog.title }}</h2>
+              {% if blog.image %}
+                <img class="blog-image" src="{{ blog.image.url }}" alt="{{ blog.title }}">
+              {% else %}
+                <div class="image-not-found">
+                  <p>Imagen no encontrada</p>
+                </div>
+              {% endif %}
+              <div class="blog-meta">
+                <p class="blog-date">{{ blog.date }}</p>
+                <div class="blog-rating">
+                  <span class="rating-number">{{ blog.rating|default_if_none:0|floatformat:1 }}</span>
+                  <span class="star">&#9733;</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      {% empty %}
+        <li>No se encontraron blogs.</li>
+      {% endfor %}
+    </ul>
+
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-secondary">&laquo; Primera</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary">Anterior</a>
+      {% endif %}
+
+      <span class="current-page btn btn-primary disabled">{{ page_obj.number }}</span>
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary">Siguiente</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary">Última &raquo;</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

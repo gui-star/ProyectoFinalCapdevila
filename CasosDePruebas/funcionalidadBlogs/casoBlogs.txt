@@ -1,0 +1,9 @@
+c1: Clickeamos en la pestaña blogs.
+c2: Clickeamos en el boton de crear nuevo blog.
+c3: Rellenamos los campos requeridos, subimos una imagen de cualquier formato de prueba y ponemos un rating, del 0 al 10, luego clickeamos publicar.
+c4-1:Parte superior del blog.
+c4-2:Parte inferior del blog. Escribimos un comentario y damos a enviar comentario.
+c4-3:Podemos ver el comentario en pantalla, elegimos un valor,clickeamos valorar y volvemos a la pestaña blogs.
+c5:Podemos ver que se ve correctamente dentro de la lista de blogs, clickeamos en cualquier parte del recuadro del blog para volver a entrar.
+c6:Clickeamos eliminar blog.
+c7:Podemos ver que el blog fue eliminado satisfactoriamente.

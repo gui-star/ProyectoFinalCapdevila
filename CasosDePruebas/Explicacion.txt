@@ -1,0 +1,1 @@
+Mi metodologia para los casos de prueba sin conocimiento previo fue por medio de screenshots y explicaciones de los pasos en un notepad dentro de la misma carpeta, espero que se entienda!

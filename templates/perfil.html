@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="profile-section">
+    <div class="profile-avatar">
+      {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="Foto de perfil" class="rounded-circle profile-image">
+      {% else %}
+        <div class="image-not-found">
+          <p>No se ha subido ninguna foto de perfil.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div class="profile-details">
+      <h1>{{ user.username }}</h1>
+      <p class="profile-name">Nombre: {{ profile.nombre }}</p>
+      <p class="profile-description">Descripción: {{ profile.description }}</p>
+      <p class="profile-website">Página web: {{ profile.website }}</p>
+      <p class="profile-email">Email: {{ user.email }}</p>
+      <a href="{% url 'cuentas:edit_profile' %}" class="btn btn-primary">Editar perfil</a>
+    </div>
+  </div>
+{% endblock %}

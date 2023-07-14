@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <h1 class="text-center">Bienvenido a Proyecto Blog Videojuegos</h1>
+        <p class="lead text-center">Explora el mundo de los videojuegos a través de nuestros blogs especializados.</p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-lg-6">
+        <h2>Características principales</h2>
+        <ul>
+          <li>Reseñas detalladas de los últimos videojuegos</li>
+          <li>Noticias y actualizaciones sobre la industria de los videojuegos</li>
+          <li>Análisis en profundidad de tendencias y temas relevantes</li>
+          <li>Comunidad activa de jugadores y entusiastas</li>
+        </ul>
+        <a href="{% url 'blogs:blog_list' %}" class="btn btn-primary">Explorar blogs</a>
+      </div>
+      <div class="col-lg-6">
+        <h2>Últimos blogs publicados</h2>
+        <ul class="list-group">
+          {% for blog in latest_blogs %}
+          <li class="list-group-item">
+            <h4>{{ blog.title }}</h4>
+            <p>{{ blog.date }}</p>
+          </li>
+          {% empty %}
+          <li class="list-group-item">No se encontraron blogs.</li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'blogs:blog_list' %}" class="btn btn-primary">Ver todos los blogs</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

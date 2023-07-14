@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>About Me</h1>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{% static 'img/profile_picture_aboutme.jpg' %}" alt="Profile Picture" class="img-fluid mb-4">
+      </div>
+      <div class="col-md-6">
+        <h3>Nombre:</h3>
+        <p>Marcos Alejandro Bonillo</p>
+
+        <h3>Descripción:</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod, nisl eget varius tempor, velit ex semper tortor, non efficitur sem risus eget mauris. Nullam eget purus vel massa efficitur eleifend vitae sit amet lectus.</p>
+
+        <h3>Experiencia:</h3>
+        <ul>
+          <li>Python en CoderHouse</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
