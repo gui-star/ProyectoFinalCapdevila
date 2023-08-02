@@ -1,5 +1,0 @@
-c1:Dentro de la pestaña mensajes clickeamos el boton de enviar mensaje.
-c2:Del menu desplegable elegimos uno de los usuarios disponibles y rellenamos los campos requeridos.
-c3:Una vez llenos los campos requeridos, clickeamos enviar.
-c4:Aqui yo loguee la cuenta de Usuario1 y entre a la pestaña mensajes, luego clickeamos el mensaje para ver el contenido.
-c5:Mensaje recibido a la perfeccion.
